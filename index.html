@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dakota's To Do List - Quality Home Services in Dallas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fef3c7;
+        }
+        
+        .serif {
+            font-family: Georgia, serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #fbbf24;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111;
+        }
+        
+        .logo p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #d97706;
+        }
+        
+        .cta-button {
+            background: #f59e0b;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cta-button:hover {
+            background: #d97706;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #dbeafe 100%);
+            padding: 80px 20px;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 2px solid #fbbf24;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .hero h2 {
+            font-size: 56px;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #111;
+        }
+        
+        .hero .highlight {
+            color: #d97706;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #374151;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: #f59e0b;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #d97706;
+            border: 2px solid #f59e0b;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: #fef3c7;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border: 1px solid #fef3c7;
+        }
+        
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+        
+        .stat {
+            font-size: 56px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 20px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+        
+        .stat-desc {
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+        
+        .quote-box {
+            background: #fef3c7;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .quote-box p {
+            font-style: italic;
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .quote-box .author {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .section-header h2 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            font-size: 20px;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+        
+        .service-card {
+            background: white;
+            border: 2px solid #f3f4f6;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 16px;
+        }
+        
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 4px;
+        }
+        
+        .service-tagline {
+            font-size: 14px;
+            color: #d97706;
+            font-weight: 600;
+        }
+        
+        .service-items {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #fef3c7;
+        }
+        
+        .service-items.active {
+            display: block;
+        }
+        
+        .service-items li {
+            display: flex;
+            align-items: start;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #374151;
+        }
+        
+        .checkmark {
+            color: #f59e0b;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        
+        .specialty-banner {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 48px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .specialty-banner h3 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        
+        .specialty-banner p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #fef3c7;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #dbeafe, #fef3c7);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about h2 {
+            font-size: 40px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .about p {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .facebook {
+            background: #1877f2;
+            color: white;
+        }
+        
+        .facebook:hover {
+            background: #145dbf;
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+        
+        .instagram:hover {
+            opacity: 0.9;
+        }
+        
+        .reasons-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border: 1px solid #fef3c7;
+        }
+        
+        .reasons-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 24px;
+        }
+        
+        .reason-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .check-icon {
+            background: #f59e0b;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .reason-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 4px;
+        }
+        
+        .reason-item p {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .contact-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 16px;
+        }
+        
+        .contact > p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, #fef3c7, #dbeafe);
+            padding: 48px;
+            border-radius: 16px;
+            border: 2px solid #fbbf24;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        .phone-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #f59e0b;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 28px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            margin-bottom: 24px;
+        }
+        
+        .phone-button:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+        
+        .contact-tagline {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 40px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #fbbf24;
+            text-align: left;
+        }
+        
+        .contact-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 12px;
+        }
+        
+        .contact-card p {
+            color: #374151;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .contact-card small {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .social-icon {
+            color: #6b7280;
+            transition: color 0.3s;
+        }
+        
+        .social-icon:hover {
+            color: #f59e0b;
+        }
+        
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 48px 20px;
+            border-top: 4px solid #f59e0b;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        footer h3 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        footer p {
+            color: #9ca3af;
+            margin-bottom: 8px;
+        }
+        
+        footer small {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .section-header h2 {
+                font-size: 32px;
+            }
+            
+            .phone-button {
+                font-size: 20px;
+                padding: 16px 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="home" style="color: white; width: 28px; height: 28px;"></i>
+                </div>
+                <div>
+                    <h1 class="serif">Dakota's To Do List</h1>
+                    <p>Honest Work, Fair Prices</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="tel:4697161014" class="cta-button">
+                    <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div>
+                <div class="badge">
+                    <i data-lucide="heart" style="width: 16px; height: 16px; color: #f59e0b; fill: #f59e0b;"></i>
+                    Family-Owned & Local
+                </div>
+                <h2 class="serif">
+                    Your Home<br>
+                    Deserves the<br>
+                    <span class="highlight">Best Care</span>
+                </h2>
+                <p>
+                    Hi, we're Dakota and Jessica! We're your neighbors right here in Dallas, and we treat every home like it's our own. Whether it's refinishing beautiful hardwood floors or finally fixing that door that won't close right, we're here to help.
+                </p>
+                <div class="hero-buttons">
+                    <a href="tel:4697161014" class="btn-primary">
+                        <i data-lucide="phone" style="width: 22px; height: 22px;"></i>
+                        (469) 716-1014
+                    </a>
+                    <a href="#services" class="btn-secondary">See What We Do</a>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width: 32px; height: 32px; fill: #f59e0b; color: #f59e0b;"></i>
+                        <i data-lucide="star" style="width: 32px; height: 32px; fill: #f59e0b; color: #f59e0b;"></i>
+                        <i data-lucide="star" style="width: 32px; height: 32px; fill: #f59e0b; color: #f59e0b;"></i>
+                        <i data-lucide="star" style="width: 32px; height: 32px; fill: #f59e0b; color: #f59e0b;"></i>
+                        <i data-lucide="star" style="width: 32px; height: 32px; fill: #f59e0b; color: #f59e0b;"></i>
+                    </div>
+                    <div class="stat serif">100%</div>
+                    <div class="stat-label">Happy Customers</div>
+                    <p class="stat-desc">Every single one recommends us!</p>
+                    <div class="quote-box">
+                        <p>"Don't see what you need on the list? Just give us a call! We also do welding, bulk cleanup, and all kinds of projects. If we can't handle it ourselves, we'll point you to someone who can."</p>
+                        <div class="author">— Dakota Sharp, Owner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="serif">How We Can Help</h2>
+                <p>From beautiful floors to handy fixes—here's what we're best at doing for our neighbors</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <div>
+                            <h3>Flooring Services</h3>
+                            <div class="service-tagline">Our Specialty</div>
+                        </div>
+                        <i data-lucide="chevron-down" style="width: 24px; height: 24px; color: #f59e0b;"></i>
+                    </div>
+                    <ul class="service-items">
+                        <li><span class="checkmark">✓</span> Hardwood floor refinishing & restoration</li>
+                        <li><span class="checkmark">✓</span> Hardwood floor installation</li>
+                        <li><span class="checkmark">✓</span> Floor sanding and finishing</li>
+                        <li><span class="checkmark">✓</span> Custom staining (including white staining)</li>
+                        <li><span class="checkmark">✓</span> Historic home floor restoration</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <div>
+                            <h3>Carpentry & Installation</h3>
+                            <div class="service-tagline">Custom Work</div>
+                        </div>
+                        <i data-lucide="chevron-down" style="width: 24px; height: 24px; color: #f59e0b;"></i>
+                    </div>
+                    <ul class="service-items">
+                        <li><span class="checkmark">✓</span> Shiplap wall installation</li>
+                        <li><span class="checkmark">✓</span> Trim work & decorative molding</li>
+                        <li><span class="checkmark">✓</span> Pocket door installation & repair</li>
+                        <li><span class="checkmark">✓</span> Sliding door track repair</li>
+                        <li><span class="checkmark">✓</span> Custom carpentry projects</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <div>
+                            <h3>Bathroom Services</h3>
+                            <div class="service-tagline">Full Updates</div>
+                        </div>
+                        <i data-lucide="chevron-down" style="width: 24px; height: 24px; color: #f59e0b;"></i>
+                    </div>
+                    <ul class="service-items">
+                        <li><span class="checkmark">✓</span> Vanity installation</li>
+                        <li><span class="checkmark">✓</span> Toilet installation</li>
+                        <li><span class="checkmark">✓</span> Shower head replacement</li>
+                        <li><span class="checkmark">✓</span> Drain installation</li>
+                        <li><span class="checkmark">✓</span> Towel holder & fixture mounting</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <div>
+                            <h3>Painting & Finishing</h3>
+                            <div class="service-tagline">Detail Work</div>
+                        </div>
+                        <i data-lucide="chevron-down" style="width: 24px; height: 24px; color: #f59e0b;"></i>
+                    </div>
+                    <ul class="service-items">
+                        <li><span class="checkmark">✓</span> Interior painting</li>
+                        <li><span class="checkmark">✓</span> Column sanding & refinishing</li>
+                        <li><span class="checkmark">✓</span> Professional staining services</li>
+                        <li><span class="checkmark">✓</span> Detail work & touch-ups</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <div>
+                            <h3>Additional Services</h3>
+                            <div class="service-tagline">We've Got You</div>
+                        </div>
+                        <i data-lucide="chevron-down" style="width: 24px; height: 24px; color: #f59e0b;"></i>
+                    </div>
+                    <ul class="service-items">
+                        <li><span class="checkmark">✓</span> Hauling & trash removal</li>
+                        <li><span class="checkmark">✓</span> Deep cleaning services</li>
+                        <li><span class="checkmark">✓</span> General handyman work</li>
+                        <li><span class="checkmark">✓</span> Door repairs & adjustments</li>
+                        <li><span class="checkmark">✓</span> Storage unit moving</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="specialty-banner">
+                <h3 class="serif">Hardwood Floors Are Our Specialty</h3>
+                <p>Whether you've got historic hardwood that needs some love or you're ready for brand new floors, we've got years of experience to make them absolutely beautiful. Sanding, staining, refinishing—we handle it all with the care and precision your home deserves.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-grid">
+            <div>
+                <h2 class="serif">Meet Your Neighbors:<br>Dakota & Jessica</h2>
+                <p>Hey there! We're Dakota and Jessica Sharp, and we live right here in the Dallas area with you. We started Dakota's To Do List because we believe your home deserves honest work at fair prices—the kind of service we'd want for our own family.</p>
+                <p>Dakota's real passion is flooring. Whether it's bringing old hardwood back to life or laying down beautiful new floors, that's where his heart is. But we're also handy with just about everything around the house—from carpentry and painting to those little fixes that have been on your list forever.</p>
+                <p>When you call us, you're not getting a big impersonal company. You're getting us—two people who will show up, listen to what you need, and treat your home with genuine care. That's our promise to you.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61573112381559" target="_blank" class="social-btn facebook">
+                        <i data-lucide="facebook" style="width: 20px; height: 20px;"></i>
+                        Find Us on Facebook
+                    </a>
+                    <a href="https://www.instagram.com/dakotas.todo.list" target="_blank" class="social-btn instagram">
+                        <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        Follow on Instagram
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="reasons-card">
+                    <h3 class="serif">Why Folks Choose Us
